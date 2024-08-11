@@ -8,6 +8,16 @@ body {
     line-height: 1.6;
 }
 
+/* Apply Mongolian font to specific class */
+.mongolian {
+    font-family: 'Noto Sans Mongolian', sans-serif;
+}
+
+/* Example: Apply Mongolian font to all p tags with Mongolian script */
+p:lang(mn) {
+    font-family: 'Noto Sans Mongolian', sans-serif;
+}
+
 /* Header and Navigation */
 header {
     background-color: #4CAF50;
@@ -60,7 +70,7 @@ header .nav-links a:hover {
 
 /* Hero Section */
 #hero {
-    background-image: url('images/background.jpg');
+    background-image: url('images/43348590_2726156704077143_2909327339261263872_n.jpg');
     background-size: cover;
     background-position: center;
     color: white;

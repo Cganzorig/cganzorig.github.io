@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ganzorig Chuluunbat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mongolian&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -22,7 +23,6 @@
     <main>
         <section id="hero">
             <div class="hero-content">
-                <h2>Welcome to Ganzorig Chuluunbat's AI Journey</h2>
                 <p>Explore my journey in AI through my blog posts.</p>
                 <a href="#posts" class="btn">View Posts</a>
             </div>
@@ -39,30 +39,30 @@
             <!-- VAE Post -->
             <article>
                 <h3>Variational Autoencoder (VAE) гэж юу вэ?</h3>
-                <p>
+                <p class="mongolian">
                     Variational Autoencoder (VAE) нь машин сургалтын нэг төрөл бөгөөд энкодер (encoder) ба декодер (decoder) гэсэн хоёр үндсэн хэсгээс бүрдэнэ. Энкодер хэсэг нь өгөгдлийг шахаж, латент орон зайд хадгалдаг бол декодер хэсэг нь латент орон зайд хадгалагдсан мэдээллийг эргүүлэн сэргээн өгөгдөл үүсгэдэг.
                 </p>
-                <p>
+                <p class="mongolian">
                     VAE нь ерөнхийдөө өгөгдлийн тархцыг суралцахад ашиглагддаг бөгөөд шинээр өгөгдөл үүсгэх, өгөгдлийг шахах, эсвэл гажиг илрүүлэх зэрэг олон төрлийн хэрэглээнд ашиглагддаг. Энэ нийтлэлд бид VAE-г хэрхэн залилангийн гүйлгээг илрүүлэхэд ашиглах талаар авч үзэх болно.
                 </p>
 
                 <h4>VAE ашиглан Залилангийн Гүйлгээг Илрүүлэх</h4>
-                <p>
+                <p class="mongolian">
                     Залилангийн гүйлгээг илрүүлэхэд VAE нь маш сайн шийдэл болж чадна. VAE нь хэвийн (жирийн) гүйлгээнүүдийг сурч, улмаар ердийн бус гүйлгээнүүдийг (залилах оролдлого гэх мэт) илрүүлэх боломжтой. Энд бид VAE-г ашиглан хэрхэн залилангийн гүйлгээг илрүүлэх тухай жишээг үзүүлье.
                 </p>
 
                 <h5>1. Өгөгдөл Бэлтгэх</h5>
-                <p>
+                <p class="mongolian">
                     Бид гүйлгээний өгөгдлийг бэлтгэж, түүнийг сургалтад ашиглах хэрэгтэй. Эхний алхам нь хэвийн гүйлгээний өгөгдлийг цуглуулж, үүнийг VAE сургалтанд ашиглах явдал юм.
                 </p>
 
                 <h5>2. VAE Загвар Сургалт</h5>
-                <p>
+                <p class="mongolian">
                     Хэвийн гүйлгээний өгөгдлийг ашиглан VAE загварыг сургах. Энкодер хэсэг нь өгөгдлийг латент орон зайд шахаж, декодер хэсэг нь үүнийг буцааж сэргээнэ. Сургалтын явцад VAE нь хэвийн гүйлгээний тархцыг сурч мэдэх болно.
                 </p>
 
                 <h5>3. Залилангийн Гүйлгээг Илрүүлэх</h5>
-                <p>
+                <p class="mongolian">
                     Сургалтад ашиглагдаагүй шинэ гүйлгээнүүдийг VAE загварт оруулж, эдгээрийг хэвийн гүйлгээтэй харьцуулан үнэлнэ. Хэрэв гүйлгээний өгөгдөл хэвийн тархцаас хол байвал, түүнийг залилангийн гүйлгээ гэж тэмдэглэнэ.
                 </p>
 
@@ -107,7 +107,7 @@ loss = np.mean(np.square(x_new - reconstructed), axis=1)
 threshold = np.percentile(loss, 95)
 fraud_transactions = x_new[loss > threshold]
                 </code></pre>
-                <p>
+                <p class="mongolian">
                     Энэ жишээ нь VAE-г ашиглан залилангийн гүйлгээг хэрхэн илрүүлэхийг харуулж байна. Сургалтын явцад загвар хэвийн гүйлгээний хэв маягийг суралцаж, улмаар ердийн бус гүйлгээг илрүүлэх боломжтой болж байна.
                 </p>
             </article>
