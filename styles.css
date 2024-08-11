@@ -8,6 +8,14 @@ body {
     line-height: 1.6;
 }
 
+@font-face {
+    font-family: 'Menksoft Qagan';
+    src: url('fonts/MenksoftQagan.woff') format('woff'),
+         url('fonts/MenksoftQagan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* Apply Mongolian font to specific class */
 .mongolian {
     font-family: 'Noto Sans Mongolian', sans-serif;
