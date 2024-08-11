@@ -73,12 +73,12 @@ header .nav-links a {
 }
 
 header .nav-links a:hover {
-    background-color: #3e8e41;
+    background-color: #272f7c;
 }
 
 /* Hero Section */
 #hero {
-    background-image: url('images/43348590_2726156704077143_2909327339261263872_n.jpg');
+    background-image: url('images/pexels-chris-schippers-139261-427679.jpg');
     background-size: cover;
     background-position: center;
     color: white;
