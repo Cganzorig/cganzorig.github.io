@@ -4,27 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My AI Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to My AI Page</h1>
+        <nav>
+            <div class="logo">
+                <h1><a href="#">My AI Page</a></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#ai-chat">AI Chat</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h2>Welcome to My AI Page</h2>
+                <p>Explore my AI projects, interact with AI chat, and learn more about my journey in AI.</p>
+                <a href="#projects" class="btn">View Projects</a>
+            </div>
+        </section>
         <section id="about">
             <h2>About Me</h2>
-            <p>This is a brief description about me and my interests in AI.</p>
+            <p>Hello! I'm a passionate AI enthusiast exploring the realms of machine learning, deep learning, and artificial intelligence. My projects are a reflection of my continuous learning and experiments in this exciting field.</p>
         </section>
         <section id="projects">
             <h2>Projects</h2>
-            <ul>
-                <li><a href="https://github.com/username/project1">Project 1</a> - Description of project 1.</li>
-                <li><a href="https://github.com/username/project2">Project 2</a> - Description of project 2.</li>
-            </ul>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3><a href="https://github.com/username/project1">Project 1</a></h3>
+                    <p>A brief description of Project 1 and what it entails.</p>
+                </div>
+                <div class="project-item">
+                    <h3><a href="https://github.com/username/project2">Project 2</a></h3>
+                    <p>A brief description of Project 2 and what it entails.</p>
+                </div>
+            </div>
+        </section>
+        <section id="ai-chat">
+            <h2>AI Chat</h2>
+            <textarea id="user-input" placeholder="Ask me anything..."></textarea>
+            <button onclick="askAI()">Ask</button>
+            <div id="response"></div>
         </section>
     </main>
     <footer>
         <p>&copy; 2024 My AI Page. All rights reserved.</p>
     </footer>
+    <script>
+        function askAI() {
+            const userInput = document.getElementById('user-input').value;
+            axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
+                prompt: userInput,
+                max_tokens: 150
+            }, {
+                headers: {
+                    'Authorization': 'Bearer YOUR_OPENAI_API_KEY'
+                }
+            })
+            .then(response => {
+                document.getElementById('response').innerText = response.data.choices[0].text;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </body>
 </html>
