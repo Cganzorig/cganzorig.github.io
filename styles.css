@@ -69,11 +69,12 @@ header .nav-links a {
     text-decoration: none;
     padding: 0.5em 1em;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 header .nav-links a:hover {
     background-color: #272f7c;
+    transform: translateY(-2px);
 }
 
 /* Hero Section */
@@ -85,6 +86,16 @@ header .nav-links a:hover {
     padding: 100px 20px;
     text-align: center;
     position: relative;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 #hero::after {
@@ -122,11 +133,12 @@ header .nav-links a:hover {
     color: white;
     text-decoration: none;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #hero .btn:hover {
     background-color: #3e8e41;
+    transform: scale(1.05);
 }
 
 /* About Section */
@@ -166,6 +178,12 @@ article {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width: 800px;
     margin: 20px auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Footer */
@@ -178,4 +196,9 @@ footer {
     bottom: 0;
     width: 100%;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add smooth scroll for anchor links */
+html {
+    scroll-behavior: smooth;
 }
