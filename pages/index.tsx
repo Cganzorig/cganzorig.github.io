@@ -4,76 +4,113 @@ import { motion } from 'framer-motion';
 
 interface Project {
   title: string;
-  description: string;
-  link: string;
   tags?: string[];
+  link: string;
 }
 
 export default function Home() {
   const projects: Project[] = [
     {
       title: "Lo-Fi Player",
-      description: "Interactive music experience",
-      link: "#",
-      tags: ["MIT Tech Review", "The Verge", "engadget"]
+      tags: ["MIT Tech Review", "The Verge", "engadget"],
+      link: "#"
+    },
+    {
+      title: "かれさんすい 枯山水",
+      link: "#"
     },
     {
       title: "YouTube Sampler",
-      description: "Create music with YouTube videos",
-      link: "#",
-      tags: ["ml5.js"]
+      link: "#"
     },
-    // Add more projects...
+    {
+      title: "Body Beat",
+      tags: ["ml5.js"],
+      link: "#"
+    },
+    {
+      title: "Whack A Mole",
+      tags: ["ml5.js"],
+      link: "#"
+    },
+    {
+      title: "Sornting",
+      tags: ["magenta"],
+      link: "#"
+    },
+    {
+      title: "RUNN",
+      tags: ["magenta"],
+      link: "#"
+    },
+    {
+      title: "Beact",
+      link: "#"
+    },
+    {
+      title: "Digital Cortex",
+      link: "#"
+    },
+    {
+      title: "Étude",
+      link: "#"
+    }
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-16">
+    <div className="max-w-2xl mx-auto px-6 py-16">
       <Head>
-        <title>Your Name - Creative Developer</title>
-        <meta name="description" content="Personal portfolio and projects" />
+        <title>Ganzorig Chuluunbat</title>
+        <meta name="description" content="Personal website and projects" />
       </Head>
 
       <motion.section 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="mb-16"
+        className="mb-12 space-y-4"
       >
-        <h1 className="text-3xl mb-4">👋 Hi, I'm [Your Name].</h1>
-        <p className="text-xl text-gray-700">
-          🎸 I make [your specialty] easier to [action], e.g. Project A and Project B.
+        <p className="text-lg">🙌 Hi, I'm Ganzorig Chuluunbat.</p>
+        <p className="text-lg">
+          🎸 I make AI easier to understand, e.g. Lo-Fi Player and Beact.
         </p>
-        <p className="mt-4 text-gray-600">
-          ☕️ Find me on{' '}
+        <p className="text-lg">
+          ☕️ Chilling on{' '}
           <a href="https://github.com/yourusername" className="text-blue-600 hover:underline">github</a>,{' '}
           <a href="https://twitter.com/yourusername" className="text-blue-600 hover:underline">twitter</a>, and{' '}
+          <a href="https://medium.com/@yourusername" className="text-blue-600 hover:underline">medium</a>.{' '}
+          Flexing on{' '}
           <a href="https://linkedin.com/in/yourusername" className="text-blue-600 hover:underline">linkedin</a>.
         </p>
       </motion.section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <motion.p 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="mb-8 text-lg"
+      >
+        Here are some of my stuffs...
+      </motion.p>
+
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="space-y-6"
+      >
         {projects.map((project, index) => (
-          <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className="group"
-          >
-            <a href={project.link} className="block p-6 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors">
-              <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
-              <p className="text-gray-600 mb-2">{project.description}</p>
-              {project.tags && (
-                <div className="flex gap-2 flex-wrap">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-sm text-gray-500">[{tag}]</span>
-                  ))}
-                </div>
-              )}
+          <div key={project.title} className="group">
+            <a href={project.link} className="text-lg hover:text-blue-600 transition-colors">
+              * {project.title}{' '}
+              {project.tags && project.tags.map(tag => (
+                <span key={tag} className="text-gray-500">[{tag}] </span>
+              ))}
             </a>
-          </motion.div>
+          </div>
         ))}
-      </section>
+        <p className="text-lg">more..</p>
+      </motion.div>
     </div>
   );
 } 
