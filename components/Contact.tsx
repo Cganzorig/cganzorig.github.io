@@ -11,10 +11,35 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="max-w-lg mx-auto"
         >
-          <input type="text" name="name" placeholder="Your Name" required className="w-full p-2 mb-4 border border-gray-300 rounded" />
-          <input type="email" name="email" placeholder="Your Email" required className="w-full p-2 mb-4 border border-gray-300 rounded" />
-          <textarea name="message" placeholder="Your Message" required className="w-full p-2 mb-4 border border-gray-300 rounded"></textarea>
-          <button type="submit" className="bg-coral hover:bg-teal text-white font-bold py-2 px-4 rounded">Send</button>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            required
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
+            autocomplete="name"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            required
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
+            autocomplete="email"
+          />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            required
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
+            autocomplete="off"
+          ></textarea>
+          <button
+            type="submit"
+            className="bg-coral hover:bg-teal text-white font-bold py-2 px-4 rounded"
+          >
+            Send
+          </button>
         </motion.form>
       </div>
     </section>
