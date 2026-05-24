@@ -1,31 +1,32 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ganzorig Chuluunbat | AI Safety Research</title>
-    <meta
-      name="description"
-      content="Personal research page of Ganzorig Chuluunbat focused on AI safety and practical machine learning work."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Code+Pro:wght@500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="icon" href="/favicon.ico" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganzorig Chuluunbat | AI Safety</title>
+  <meta
+    name="description"
+    content="Research profile of Ganzorig Chuluunbat, focusing on AI safety and practical machine learning work."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Code+Pro:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="/favicon.ico" />
 </head>
 <body>
   <header class="site-header">
     <nav class="container nav" aria-label="Main navigation">
-      <a class="brand" href="#hero">Ganzorig Chuluunbat</a>
+      <a class="brand" href="#profile">Ganzorig Chuluunbat</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#research">Research</a></li>
-        <li><a href="#publications">Research Notes</a></li>
+        <li><a href="#notes">Notes</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#cv">CV</a></li>
         <li><a href="#fitness">Fitness</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -33,104 +34,128 @@
   </header>
 
   <main class="content-shell">
-    <section id="hero" class="content-card intro">
-      <p class="kicker">AI Safety Researcher · Machine Learning Practitioner</p>
-      <h1>Machine intelligence should be <span>safe, transparent, and useful</span>.</h1>
-      <p>
-        I’m building research notes and practical systems around AI safety.
-        The goal is simple: make safety ideas readable, testable, and easy to put into real workflows.
+    <section id="profile" class="content-section profile">
+      <p class="meta-line">AI Safety Researcher · Machine Learning Practitioner</p>
+      <h1>Machine intelligence should be safe, transparent, and useful.</h1>
+      <p class="lead">
+        I write and build practical resources for reliable AI systems: readable evaluation protocols,
+        safer deployment checklists, and experimental tools that keep behavior predictable.
       </p>
-      <p class="contact-line">Email: <a href="mailto:hello@example.com">hello@example.com</a> · Location: California / US</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#publications">View recent work</a>
-        <a class="btn btn-ghost" href="#projects">See projects</a>
-      </div>
-      <p class="scroll-cue">Scroll to explore</p>
+      <p class="meta-line">hello@example.com · California, US</p>
     </section>
 
-    <section id="about" class="content-card">
+    <section id="about" class="content-section">
       <h2>About</h2>
       <p>
-        I am Ganzorig Chuluunbat. I work on practical AI projects and publish concise notes on how safety, reliability,
-        and evaluation influence real deployments.
-      </p>
-      <p>
-        My background combines machine learning engineering and hands-on experimentation.
-        I focus on methods that are understandable, measurable, and maintainable by teams.
+        I am Ganzorig Chuluunbat. My focus is on AI safety and applied machine learning.
+        I publish short notes and project write-ups that can be used by people implementing systems
+        who need practical guidance over abstractions.
       </p>
     </section>
 
-    <section id="research" class="content-card">
-      <h2>Research Focus</h2>
-      <ul class="plain-list">
-        <li><span>Model Safety:</span> failure modes in chat and tool-using systems</li>
-        <li><span>Alignment:</span> alignment objectives, instruction following, and robustness</li>
-        <li><span>Evaluation:</span> red-team scenarios, benchmark design, and drift checks</li>
-        <li><span>Reliability:</span> data quality, leakage prevention, and guardrails</li>
+    <section id="research" class="content-section">
+      <h2>Research</h2>
+      <ul class="compact-list">
+        <li>
+          <span>Model Safety:</span> Identifying failure modes in chat systems, tool calling, and policy-constrained generation.
+        </li>
+        <li>
+          <span>Reliability:</span> Building robust evaluation loops with automated regression detection and continuous monitoring.
+        </li>
+        <li>
+          <span>Trust:</span> Designing interpretable validation methods for sensitive or high-risk model behavior.
+        </li>
       </ul>
     </section>
 
-    <section id="publications" class="content-card">
-      <h2>Recent Notes</h2>
+    <section id="notes" class="content-section">
+      <h2>Research Notes</h2>
       <article class="entry">
-        <h3>How to Design Safety Tests Before a Model Launch</h3>
-        <p>What to test before shipping: pre-deployment prompt checks, schema validation, and baseline metrics that catch regressions early.</p>
-        <p class="meta">Status: draft · notes for a practical checklist</p>
+        <h3>How to design safety tests before launch</h3>
+        <p class="meta">31 Aug 2025</p>
+        <p>
+          A practical checklist for model tests, prompt hardening, and regression checks before deployment.
+        </p>
       </article>
       <article class="entry">
-        <h3>VAE for Anomaly Detection: what is useful, what is not</h3>
-        <p>A practical comparison of when generative anomaly models help and where they can fail under domain shift.</p>
-        <p class="meta">Status: draft · AI safety notes</p>
+        <h3>VAE for anomaly detection: useful and not useful</h3>
+        <p class="meta">12 May 2024</p>
+        <p>
+          A short practical review of when generative anomaly models support detection workflows and when they fail.
+        </p>
       </article>
       <article class="entry">
-        <h3>Monitoring AI Safety in Ongoing Systems</h3>
-        <p>Simple dashboards and threshold workflows that keep production behavior visible and correctable.</p>
-        <p class="meta">Status: draft · in progress</p>
+        <h3>Monitoring safeguards in production AI</h3>
+        <p class="meta">in progress</p>
+        <p>
+          Lightweight dashboard rules for detecting behavior drift and automatic handoff to human review.
+        </p>
       </article>
     </section>
 
-    <section id="projects" class="content-card">
-      <h2>Selected Projects</h2>
+    <section class="content-section">
+      <h2>Writing</h2>
+      <p>
+        I am currently preparing longer-form posts that will go to the AI safety section of this site.
+        The short notes above are meant to be immediately usable for model builders and review teams.
+      </p>
+    </section>
+
+    <section id="projects" class="content-section">
+      <h2>Projects</h2>
       <article class="entry">
         <h3>Lo-Fi Player</h3>
-        <p>AI-assisted interface with readable interaction patterns and strict state handling.</p>
-        <p class="meta">Prototype · Interaction + ML</p>
+        <p class="meta">Prototype — AI-assisted interface</p>
+        <p>
+          Interface-first experiment with strict state handling and readable interaction patterns.
+        </p>
       </article>
       <article class="entry">
         <h3>Body Beat</h3>
-        <p>Personal fitness tracker concept with structured summaries and quality-controlled ingestion.</p>
-        <p class="meta">Health Tech · Analytics</p>
+        <p class="meta">Health Tech — Fitness tracker concept</p>
+        <p>
+          Personal data quality checks and weekly summary logic for structured progress tracking.
+        </p>
       </article>
       <article class="entry">
         <h3>Fraud Detection Notes</h3>
-        <p>Practically oriented notes on anomaly scoring and explainable review workflows.</p>
-        <p class="meta">Machine Learning · Risk</p>
+        <p class="meta">Machine Learning — Risk</p>
+        <p>
+          Simple anomaly scoring and explainability notes to support manual review pipelines.
+        </p>
       </article>
     </section>
 
-    <section id="fitness" class="content-card">
-      <h2>Fitness Journey</h2>
-      <ul class="plain-list">
-        <li>Rowing intervals + threshold work</li>
-        <li>Strength cycle: bench/deadlift progression</li>
-        <li>Half marathon preparation and endurance training</li>
-        <li>Recovery-focused programming and sustainable consistency</li>
+    <section id="cv" class="content-section">
+      <h2>CV Snapshot</h2>
+      <ul class="compact-list timeline">
+        <li><span>2024:</span> AI Safety and ML engineering projects, with focus on practical safety tooling.</li>
+        <li><span>2023:</span> Built a number of experimental pipelines and benchmarked safety workflows.</li>
+        <li><span>2022:</span> Research writing and hands-on implementation work in machine learning systems.</li>
       </ul>
     </section>
 
-    <section id="contact" class="content-card">
+    <section id="fitness" class="content-section">
+      <h2>Fitness Journey</h2>
+      <ul class="compact-list">
+        <li>Rowing threshold sessions and consistent interval progress.</li>
+        <li>Strength cycle with bench/deadlift tracking.</li>
+        <li>Half marathon and endurance program continuity.</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="content-section">
       <h2>Contact</h2>
+      <p>Have a paper, project idea, or safety question? Reach out by email.</p>
       <form id="contact-form" class="contact-form">
-        <div class="two-cols-form">
-          <label>
-            Name
-            <input type="text" name="name" required autocomplete="name" />
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" required autocomplete="email" />
-          </label>
-        </div>
+        <label>
+          Name
+          <input type="text" name="name" required autocomplete="name" />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required autocomplete="email" />
+        </label>
         <label>
           Message
           <textarea name="message" rows="5" required></textarea>
