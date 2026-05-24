@@ -17,15 +17,16 @@
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="/favicon.ico" />
 </head>
-<body>
+  <body>
   <header class="site-header">
     <nav class="container nav" aria-label="Main navigation">
-      <a class="brand" href="#profile">Ganzorig Chuluunbat</a>
+      <a class="brand" href="#home">Ganzorig Chuluunbat</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#notes">Notes</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#publications">Publications</a></li>
         <li><a href="#cv">CV</a></li>
         <li><a href="#fitness">Fitness</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -34,14 +35,22 @@
   </header>
 
   <main class="content-shell">
-    <section id="profile" class="content-section profile">
-      <p class="meta-line">AI Safety Researcher · Machine Learning Practitioner</p>
-      <h1>Machine intelligence should be safe, transparent, and useful.</h1>
-      <p class="lead">
-        I write and build practical resources for reliable AI systems: readable evaluation protocols,
-        safer deployment checklists, and experimental tools that keep behavior predictable.
-      </p>
-      <p class="meta-line">hello@example.com · California, US</p>
+    <section id="home" class="content-section profile">
+      <p class="eyebrow">AI Safety Researcher · Machine Learning Practitioner</p>
+      <div class="hero-grid">
+        <div>
+          <h1>Ganzorig Chuluunbat</h1>
+          <p class="lead">
+            Machine intelligence should be safe, transparent, and useful.
+          </p>
+          <p>
+            I publish short, practical notes and projects around AI safety, reliable deployment, and
+            model behavior auditing.
+          </p>
+          <p class="meta-line">hello@example.com · California, US</p>
+        </div>
+        <img class="hero-photo" src="images/profile.jpg" alt="Profile photo of Ganzorig Chuluunbat" />
+      </div>
     </section>
 
     <section id="about" class="content-section">
@@ -101,11 +110,20 @@
       </p>
     </section>
 
+    <section id="publications" class="content-section">
+      <h2>Publications</h2>
+      <ul class="compact-list">
+        <li>Working notes on safety-oriented evaluation protocols for chat and tool-use systems.</li>
+        <li>Internal reports on anomaly detection methods in production model pipelines.</li>
+        <li>Draft chapter materials for practical AI safety deployment checklists.</li>
+      </ul>
+    </section>
+
     <section id="projects" class="content-section">
       <h2>Projects</h2>
       <article class="entry">
         <h3>Lo-Fi Player</h3>
-        <p class="meta">Prototype — AI-assisted interface</p>
+        <p class="meta">AI-assisted interface</p>
         <p>
           Interface-first experiment with strict state handling and readable interaction patterns.
         </p>
