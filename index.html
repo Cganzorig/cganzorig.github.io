@@ -1,127 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ganzorig Chuluunbat</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mongolian&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ganzorig Chuluunbat | AI Safety Notes</title>
+    <meta
+      name="description"
+      content="Personal site of Ganzorig Chuluunbat focused on AI safety, practical machine learning work, and research notes."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Source+Code+Pro:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="/favicon.ico" />
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1><a href="#">Ganzorig Chuluunbat</a></h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#posts">Posts</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="site-header">
+    <nav class="container nav" aria-label="Main navigation">
+      <a class="brand" href="#hero">Ganzorig Chuluunbat</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#ai-safety">AI Safety</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#notes">Latest Notes</a></li>
+        <li><a href="#fitness">Fitness</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <section id="hero">
-        <div class="hero-content">
-            <h2>Welcome to My World</h2>
-            <p>Explore my journey in AI through my blog posts.</p>
-            <a href="#posts" class="btn">View Posts</a>
+  <main>
+    <section id="hero" class="hero">
+      <div class="container">
+        <p class="kicker">Machine Learning, Safety, Responsible AI</p>
+        <h1>Building trustworthy AI systems, one practical note at a time.</h1>
+        <p>
+          I share clear, reader-friendly notes on AI safety, model behavior, and reliability.
+          The goal is to make the ideas behind safe AI systems understandable and directly usable.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#notes">Read latest notes</a>
+          <a class="btn btn-ghost" href="#projects">See projects</a>
         </div>
+      </div>
     </section>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hello! I'm Ganzorig Chuluunbat, a passionate AI enthusiast exploring the realms of machine learning, deep learning, and artificial intelligence. My work reflects my continuous learning and experiments in this exciting field.</p>
+    <section id="about" class="section">
+      <div class="container two-col">
+        <div>
+          <h2>About</h2>
+          <p>
+            Hi, I am Ganzorig Chuluunbat. I work on practical AI projects and publish reflections on how to keep systems safe, honest, and aligned with human goals. I believe good AI work combines technical depth with clear communication.
+          </p>
+          <p>
+            This site is where I collect concise write-ups, experiments, and resources so that people with different levels of AI background can follow and apply them.
+          </p>
+        </div>
+        <aside class="panel">
+          <h3>Focus Areas</h3>
+          <ul>
+            <li>Model safety and failure modes</li>
+            <li>Alignment risks in deployed systems</li>
+            <li>Evaluation checklists and guardrails</li>
+            <li>Human-centered AI workflows</li>
+          </ul>
+        </aside>
+      </div>
     </section>
 
-    <section id="posts">
-        <h2>Blog Posts</h2>
-        <article>
-            <h3>Variational Autoencoder (VAE) гэж юу вэ?</h3>
-            <p class="mongolian">
-                Variational Autoencoder (VAE) нь машин сургалтын нэг төрөл бөгөөд энкодер (encoder) ба декодер (decoder) гэсэн хоёр үндсэн хэсгээс бүрдэнэ. Энкодер хэсэг нь өгөгдлийг шахаж, латент орон зайд хадгалдаг бол декодер хэсэг нь латент орон зайд хадгалагдсан мэдээллийг эргүүлэн сэргээн өгөгдөл үүсгэдэг.
+    <section id="ai-safety" class="section section-alt">
+      <div class="container">
+        <h2>AI Safety Notes</h2>
+        <p class="section-intro">
+          I will be adding short, actionable posts focused on practical safety questions: what can go wrong, how to detect it, and what mitigation works.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <h3>Evaluation first</h3>
+            <p>
+              If a model is safe in a notebook but fails in production, safety is not done. I document measurable checks that keep systems honest before and after release.
             </p>
-            <p class="mongolian">
-                VAE нь ерөнхийдөө өгөгдлийн тархцыг суралцахад ашиглагддаг бөгөөд шинээр өгөгдөл үүсгэх, өгөгдлийг шахах, эсвэл гажиг илрүүлэх зэрэг олон төрлийн хэрэглээнд ашиглагддаг. Энэ нийтлэлд бид VAE-г хэрхэн залилангийн гүйлгээг илрүүлэхэд ашиглах талаар авч үзэх болно.
+          </article>
+          <article class="card">
+            <h3>Prompt and policy controls</h3>
+            <p>
+              Simple policy layers, strict schemas, and response validation reduce accidental policy drift while preserving useful flexibility.
             </p>
-            <h4>VAE ашиглан Залилангийн Гүйлгээг Илрүүлэх</h4>
-            <p class="mongolian">
-                Залилангийн гүйлгээг илрүүлэхэд VAE нь маш сайн шийдэл болж чадна. VAE нь хэвийн (жирийн) гүйлгээнүүдийг сурч, улмаар ердийн бус гүйлгээнүүдийг (залилах оролдлого гэх мэт) илрүүлэх боломжтой. Энд бид VAE-г ашиглан хэрхэн залилангийн гүйлгээг илрүүлэх тухай жишээг үзүүлье.
+          </article>
+          <article class="card">
+            <h3>Data quality defense</h3>
+            <p>
+              Unsafe outcomes often start with unsafe data. I focus on leakage, prompt injection patterns, and robust preprocessing for safer downstream behavior.
             </p>
-            <h5>1. Өгөгдөл Бэлтгэх</h5>
-            <p class="mongolian">
-                Бид гүйлгээний өгөгдлийг бэлтгэж, түүнийг сургалтад ашиглах хэрэгтэй. Эхний алхам нь хэвийн гүйлгээний өгөгдлийг цуглуулж, үүнийг VAE сургалтанд ашиглах явдал юм.
-            </p>
-            <h5>2. VAE Загвар Сургалт</h5>
-            <p class="mongolian">
-                Хэвийн гүйлгээний өгөгдлийг ашиглан VAE загварыг сургах. Энкодер хэсэг нь өгөгдлийг латент орон зайд шахаж, декодер хэсэг нь үүнийг буцааж сэргээнэ. Сургалтын явцад VAE нь хэвийн гүйлгээний тархцыг сурч мэдэх болно.
-            </p>
-            <h5>3. Залилангийн Гүйлгээг Илрүүлэх</h5>
-            <p class="mongolian">
-                Сургалтад ашиглагдаагүй шинэ гүйлгээнүүдийг VAE загварт оруулж, эдгээрийг хэвийн гүйлгээтэй харьцуулан үнэлнэ. Хэрэв гүйлгээний өгөгдөл хэвийн тархцаас хол байвал, түүнийг залилангийн гүйлгээ гэж тэмдэглэнэ.
-            </p>
-            <h5>Жишээ Код</h5>
-            <pre><code>
-from keras import layers, models
-import numpy as np
+          </article>
+        </div>
+      </div>
+    </section>
 
-# Загвар тодорхойлолт
-input_dim = 30  # Өгөгдлийн хэмжээ
-latent_dim = 2  # Латент орон зайны хэмжээ
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="project-grid">
+          <article class="project-card">
+            <h3>Lo-Fi Player</h3>
+            <p>AI-assisted interface experiment with clean UX and simple interaction patterns.</p>
+            <span class="meta">Prototype - Interaction + ML</span>
+          </article>
+          <article class="project-card">
+            <h3>Body Beat</h3>
+            <p>Sensor-driven personal fitness tracker concept with data quality checks and progress summaries.</p>
+            <span class="meta">Health Tech - Analytics</span>
+          </article>
+          <article class="project-card">
+            <h3>Fraud-Detection Notes</h3>
+            <p>Practical notes on anomaly detection patterns and explainable scoring to support review teams.</p>
+            <span class="meta">Machine Learning - Risk</span>
+          </article>
+        </div>
+      </div>
+    </section>
 
-inputs = layers.Input(shape=(input_dim,))
-h = layers.Dense(16, activation='relu')(inputs)
-z_mean = layers.Dense(latent_dim)(h)
-z_log_var = layers.Dense(latent_dim)(h)
-
-# Санаандгүй сонголт
-def sampling(args):
-    z_mean, z_log_var = args
-    epsilon = np.random.normal(size=(latent_dim,))
-    return z_mean + np.exp(0.5 * z_log_var) * epsilon
-
-z = layers.Lambda(sampling)([z_mean, z_log_var])
-
-# Декодер
-decoder_h = layers.Dense(16, activation='relu')
-decoder_mean = layers.Dense(input_dim, activation='sigmoid')
-h_decoded = decoder_h(z)
-x_decoded_mean = decoder_mean(h_decoded)
-
-# Загвар
-vae = models.Model(inputs, x_decoded_mean)
-vae.compile(optimizer='rmsprop', loss='binary_crossentropy')
-
-# Загвар сургалт
-vae.fit(x_train, x_train, epochs=50, batch_size=32, validation_data=(x_test, x_test))
-
-# Шинэ гүйлгээний өгөгдлийг үнэлэх
-reconstructed = vae.predict(x_new)
-loss = np.mean(np.square(x_new - reconstructed), axis=1)
-threshold = np.percentile(loss, 95)
-fraud_transactions = x_new[loss > threshold]
-            </code></pre>
-            <p class="mongolian">
-                Энэ жишээ нь VAE-г ашиглан залилангийн гүйлгээг хэрхэн илрүүлэхийг харуулж байна. Сургалтын явцад загвар хэвийн гүйлгээний хэв маягийг суралцаж, улмаар ердийн бус гүйлгээг илрүүлэх боломжтой болж байна.
-            </p>
+    <section id="notes" class="section section-alt">
+      <div class="container">
+        <h2>Latest Notes</h2>
+        <article class="note-list">
+          <h3><a href="#">How to Design Safety Tests Before a Model Launch</a></h3>
+          <p>A practical checklist covering data, prompts, evaluation harness, and red-team test cases.</p>
         </article>
+        <article class="note-list">
+          <h3><a href="#">VAE for anomaly detection: what is useful, what is not</a></h3>
+          <p>Short summary of when generative models help in fraud detection and where they can mislead teams.</p>
+        </article>
+      </div>
     </section>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <form id="contact-form">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit" class="btn">Send</button>
+    <section id="fitness" class="section">
+      <div class="container two-col">
+        <div>
+          <h2>Fitness Journey</h2>
+          <p>
+            Fitness is part of my routine for focus and consistency. I track rowing, running, and strength milestones in a way that mirrors disciplined ML iteration: plan, execute, review, improve.
+          </p>
+        </div>
+        <ul class="panel list-compact">
+          <li>Rowing: steady interval progress</li>
+          <li>Bench + deadlift strength blocks</li>
+          <li>Half marathon training consistency</li>
+          <li>Recovery-first training plan</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-alt">
+      <div class="container">
+        <h2>Contact</h2>
+        <p class="section-intro">Have a paper, talk, or safety question? Send a message and I will reply when available.</p>
+        <form id="contact-form" class="contact-form">
+          <div class="grid two-cols-form">
+            <label>
+              Name
+              <input type="text" name="name" required autocomplete="name" />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" required autocomplete="email" />
+            </label>
+          </div>
+          <label>
+            Message
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit">Send message</button>
         </form>
+      </div>
     </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2024 Ganzorig Chuluunbat. All rights reserved.</p>
-    </footer>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Ganzorig Chuluunbat</p>
+      <a href="mailto:hello@example.com">hello@example.com</a>
+    </div>
+  </footer>
 
-    <script src="js/scripts.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>
