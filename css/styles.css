@@ -31,10 +31,13 @@ body {
 .site-shell {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 230px minmax(0, 1fr);
+  width: min(1240px, 94vw);
+  margin: 0 auto;
+  grid-template-columns: clamp(190px, 22vw, 230px) minmax(0, 1fr);
   gap: 2rem;
   align-items: start;
   padding: 1.5rem 2.5vw 0;
+  justify-content: center;
 }
 
 .sidebar {
@@ -42,6 +45,8 @@ body {
   top: 1rem;
   padding-right: 0.25rem;
   border-right: 1px solid var(--line);
+  justify-self: end;
+  width: 100%;
 }
 
 .sidebar .brand {
