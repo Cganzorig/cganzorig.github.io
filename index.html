@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ganzorig Chuluunbat | AI Safety Notes</title>
+    <title>Ganzorig Chuluunbat | AI Safety Research</title>
     <meta
       name="description"
-      content="Personal site of Ganzorig Chuluunbat focused on AI safety, practical machine learning work, and research notes."
+      content="Personal research page of Ganzorig Chuluunbat focused on AI safety and practical machine learning work."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Source+Code+Pro:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Code+Pro:wght@500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
@@ -23,9 +23,9 @@
       <a class="brand" href="#hero">Ganzorig Chuluunbat</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#ai-safety">AI Safety</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Research Notes</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#notes">Latest Notes</a></li>
         <li><a href="#fitness">Fitness</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -33,156 +33,116 @@
   </header>
 
   <main class="content-shell">
-    <section id="hero" class="hero content-card">
-      <div class="container">
-        <p class="kicker">Machine Learning, Safety, Responsible AI</p>
-        <h1>Building trustworthy AI systems, one practical note at a time.</h1>
-        <p>
-          I share clear, reader-friendly notes on AI safety, model behavior, and reliability.
-          The goal is to make the ideas behind safe AI systems understandable and directly usable.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#notes">Read latest notes</a>
-          <a class="btn btn-ghost" href="#projects">See projects</a>
-        </div>
-        <p class="scroll-cue">Scroll down to explore my AI safety profile and work</p>
+    <section id="hero" class="content-card intro">
+      <p class="kicker">AI Safety Researcher · Machine Learning Practitioner</p>
+      <h1>Machine intelligence should be <span>safe, transparent, and useful</span>.</h1>
+      <p>
+        I’m building research notes and practical systems around AI safety.
+        The goal is simple: make safety ideas readable, testable, and easy to put into real workflows.
+      </p>
+      <p class="contact-line">Email: <a href="mailto:hello@example.com">hello@example.com</a> · Location: California / US</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#publications">View recent work</a>
+        <a class="btn btn-ghost" href="#projects">See projects</a>
       </div>
+      <p class="scroll-cue">Scroll to explore</p>
     </section>
 
-    <section id="about" class="section content-card">
-      <div class="container two-col">
-        <div>
-          <h2>About</h2>
-          <p>
-            Hi, I am Ganzorig Chuluunbat. I work on practical AI projects and publish reflections on how to keep systems safe, honest, and aligned with human goals. I believe good AI work combines technical depth with clear communication.
-          </p>
-          <p>
-            This site is where I collect concise write-ups, experiments, and resources so that people with different levels of AI background can follow and apply them.
-          </p>
-        </div>
-        <aside class="panel">
-          <h3>Focus Areas</h3>
-          <ul>
-            <li>Model safety and failure modes</li>
-            <li>Alignment risks in deployed systems</li>
-            <li>Evaluation checklists and guardrails</li>
-            <li>Human-centered AI workflows</li>
-          </ul>
-        </aside>
-      </div>
+    <section id="about" class="content-card">
+      <h2>About</h2>
+      <p>
+        I am Ganzorig Chuluunbat. I work on practical AI projects and publish concise notes on how safety, reliability,
+        and evaluation influence real deployments.
+      </p>
+      <p>
+        My background combines machine learning engineering and hands-on experimentation.
+        I focus on methods that are understandable, measurable, and maintainable by teams.
+      </p>
     </section>
 
-    <section id="ai-safety" class="section content-card">
-      <div class="container">
-        <h2>AI Safety Notes</h2>
-        <p class="section-intro">
-          I will be adding short, actionable posts focused on practical safety questions: what can go wrong, how to detect it, and what mitigation works.
-        </p>
-        <div class="grid">
-          <article class="card">
-            <h3>Evaluation first</h3>
-            <p>
-              If a model is safe in a notebook but fails in production, safety is not done. I document measurable checks that keep systems honest before and after release.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Prompt and policy controls</h3>
-            <p>
-              Simple policy layers, strict schemas, and response validation reduce accidental policy drift while preserving useful flexibility.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Data quality defense</h3>
-            <p>
-              Unsafe outcomes often start with unsafe data. I focus on leakage, prompt injection patterns, and robust preprocessing for safer downstream behavior.
-            </p>
-          </article>
-        </div>
-      </div>
+    <section id="research" class="content-card">
+      <h2>Research Focus</h2>
+      <ul class="plain-list">
+        <li><span>Model Safety:</span> failure modes in chat and tool-using systems</li>
+        <li><span>Alignment:</span> alignment objectives, instruction following, and robustness</li>
+        <li><span>Evaluation:</span> red-team scenarios, benchmark design, and drift checks</li>
+        <li><span>Reliability:</span> data quality, leakage prevention, and guardrails</li>
+      </ul>
     </section>
 
-    <section id="projects" class="section content-card">
-      <div class="container">
-        <h2>Projects</h2>
-        <div class="project-grid">
-          <article class="project-card">
-            <h3>Lo-Fi Player</h3>
-            <p>AI-assisted interface experiment with clean UX and simple interaction patterns.</p>
-            <span class="meta">Prototype - Interaction + ML</span>
-          </article>
-          <article class="project-card">
-            <h3>Body Beat</h3>
-            <p>Sensor-driven personal fitness tracker concept with data quality checks and progress summaries.</p>
-            <span class="meta">Health Tech - Analytics</span>
-          </article>
-          <article class="project-card">
-            <h3>Fraud-Detection Notes</h3>
-            <p>Practical notes on anomaly detection patterns and explainable scoring to support review teams.</p>
-            <span class="meta">Machine Learning - Risk</span>
-          </article>
-        </div>
-      </div>
+    <section id="publications" class="content-card">
+      <h2>Recent Notes</h2>
+      <article class="entry">
+        <h3>How to Design Safety Tests Before a Model Launch</h3>
+        <p>What to test before shipping: pre-deployment prompt checks, schema validation, and baseline metrics that catch regressions early.</p>
+        <p class="meta">Status: draft · notes for a practical checklist</p>
+      </article>
+      <article class="entry">
+        <h3>VAE for Anomaly Detection: what is useful, what is not</h3>
+        <p>A practical comparison of when generative anomaly models help and where they can fail under domain shift.</p>
+        <p class="meta">Status: draft · AI safety notes</p>
+      </article>
+      <article class="entry">
+        <h3>Monitoring AI Safety in Ongoing Systems</h3>
+        <p>Simple dashboards and threshold workflows that keep production behavior visible and correctable.</p>
+        <p class="meta">Status: draft · in progress</p>
+      </article>
     </section>
 
-    <section id="notes" class="section content-card">
-      <div class="container">
-        <h2>Latest Notes</h2>
-        <article class="note-list">
-          <h3><a href="#">How to Design Safety Tests Before a Model Launch</a></h3>
-          <p>A practical checklist covering data, prompts, evaluation harness, and red-team test cases.</p>
-        </article>
-        <article class="note-list">
-          <h3><a href="#">VAE for anomaly detection: what is useful, what is not</a></h3>
-          <p>Short summary of when generative models help in fraud detection and where they can mislead teams.</p>
-        </article>
-      </div>
+    <section id="projects" class="content-card">
+      <h2>Selected Projects</h2>
+      <article class="entry">
+        <h3>Lo-Fi Player</h3>
+        <p>AI-assisted interface with readable interaction patterns and strict state handling.</p>
+        <p class="meta">Prototype · Interaction + ML</p>
+      </article>
+      <article class="entry">
+        <h3>Body Beat</h3>
+        <p>Personal fitness tracker concept with structured summaries and quality-controlled ingestion.</p>
+        <p class="meta">Health Tech · Analytics</p>
+      </article>
+      <article class="entry">
+        <h3>Fraud Detection Notes</h3>
+        <p>Practically oriented notes on anomaly scoring and explainable review workflows.</p>
+        <p class="meta">Machine Learning · Risk</p>
+      </article>
     </section>
 
-    <section id="fitness" class="section content-card">
-      <div class="container two-col">
-        <div>
-          <h2>Fitness Journey</h2>
-          <p>
-            Fitness is part of my routine for focus and consistency. I track rowing, running, and strength milestones in a way that mirrors disciplined ML iteration: plan, execute, review, improve.
-          </p>
-        </div>
-        <ul class="panel list-compact">
-          <li>Rowing: steady interval progress</li>
-          <li>Bench + deadlift strength blocks</li>
-          <li>Half marathon training consistency</li>
-          <li>Recovery-first training plan</li>
-        </ul>
-      </div>
+    <section id="fitness" class="content-card">
+      <h2>Fitness Journey</h2>
+      <ul class="plain-list">
+        <li>Rowing intervals + threshold work</li>
+        <li>Strength cycle: bench/deadlift progression</li>
+        <li>Half marathon preparation and endurance training</li>
+        <li>Recovery-focused programming and sustainable consistency</li>
+      </ul>
     </section>
 
-    <section id="contact" class="section content-card">
-      <div class="container">
-        <h2>Contact</h2>
-        <p class="section-intro">Have a paper, talk, or safety question? Send a message and I will reply when available.</p>
-        <form id="contact-form" class="contact-form">
-          <div class="grid two-cols-form">
-            <label>
-              Name
-              <input type="text" name="name" required autocomplete="name" />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" required autocomplete="email" />
-            </label>
-          </div>
+    <section id="contact" class="content-card">
+      <h2>Contact</h2>
+      <form id="contact-form" class="contact-form">
+        <div class="two-cols-form">
           <label>
-            Message
-            <textarea name="message" rows="5" required></textarea>
+            Name
+            <input type="text" name="name" required autocomplete="name" />
           </label>
-          <button type="submit">Send message</button>
-        </form>
-      </div>
+          <label>
+            Email
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+        </div>
+        <label>
+          Message
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit">Send message</button>
+      </form>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 Ganzorig Chuluunbat</p>
+    <div class="container footer-inner">
+      <p>© 2026 Ganzorig Chuluunbat</p>
       <a href="mailto:hello@example.com">hello@example.com</a>
     </div>
   </footer>
