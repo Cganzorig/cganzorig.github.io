@@ -1,11 +1,11 @@
 :root {
-  --ink: #0f172a;
+  --ink: #1e293b;
   --muted: #475569;
-  --line: #d7deea;
-  --bg: #f5f7fb;
-  --blue: #1d4ed8;
-  --surface: #ffffff;
-  --surface-2: #f8fafc;
+  --line: #dce3ed;
+  --bg: #f4f6fb;
+  --blue: #2563eb;
+  --surface: #fbfcff;
+  --surface-2: #eef2ff;
 }
 
 * {
@@ -31,12 +31,13 @@ body {
 }
 
 .site-header {
-  background: #0f172a;
-  color: #e2e8f0;
+  background: var(--surface-2);
+  color: #334155;
   position: sticky;
   top: 0;
   z-index: 20;
-  border-bottom: 1px solid #1e293b;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(2px);
 }
 
 .nav {
@@ -49,7 +50,7 @@ body {
 }
 
 .brand {
-  color: #f8fafc;
+  color: #334155;
   text-decoration: none;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -65,7 +66,7 @@ body {
 }
 
 .nav-links a {
-  color: #cbd5e1;
+  color: #475569;
   text-decoration: none;
   font-size: 0.82rem;
   text-transform: uppercase;
@@ -73,7 +74,7 @@ body {
 }
 
 .nav-links a:hover {
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .content-shell {
@@ -193,6 +194,7 @@ p {
 .contact-form label {
   display: block;
   font-weight: 600;
+  color: #334155;
 }
 
 .contact-form input,
@@ -225,8 +227,9 @@ p {
 .site-footer {
   margin-top: 1rem;
   padding: 1.1rem 0 1.5rem;
-  background: #0f172a;
-  color: #dbeafe;
+  background: var(--surface-2);
+  color: #334155;
+  border-top: 1px solid var(--line);
 }
 
 .footer-inner {
@@ -238,7 +241,7 @@ p {
 }
 
 .site-footer a {
-  color: #93c5fd;
+  color: #1d4ed8;
 }
 
 @media (max-width: 760px) {
