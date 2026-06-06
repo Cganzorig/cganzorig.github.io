@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why I am looking at SAEs for geospatial foundation models | Ganzorig Chuluunbat</title>
+  <title>Sparse Autoencoders for Geospatial Foundation Models: Early Experiments | Ganzorig Chuluunbat</title>
   <meta
     name="description"
-    content="A short project note on why sparse autoencoders are interesting for geospatial foundation models and the practical issues encountered while testing them."
+    content="An early project note exploring whether sparse autoencoders can help inspect Prithvi-EO-2.0 geospatial foundation model representations."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
@@ -24,9 +24,13 @@
       <nav aria-label="Article navigation">
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="#why">Why SAEs</a></li>
-          <li><a href="#issues">Issues</a></li>
-          <li><a href="#example">Example</a></li>
+          <li><a href="#motivation">Motivation</a></li>
+          <li><a href="#why-sae">Why SAEs</a></li>
+          <li><a href="#setup">Setup</a></li>
+          <li><a href="#observations">Observations</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#worked">What Worked</a></li>
+          <li><a href="#limitations">Limitations</a></li>
           <li><a href="#next">Next</a></li>
         </ul>
       </nav>
@@ -34,60 +38,159 @@
 
     <main class="content-shell article-content">
       <article class="content-section article-page">
-        <p class="eyebrow">Project note</p>
-        <h1>Why I am looking at SAEs for geospatial foundation models</h1>
-        <p class="meta-line">6 Jun 2026 · Sparse autoencoders · Remote sensing</p>
-        <p class="lead">
-          I started this because geospatial foundation models are powerful, but their internal representations are hard to inspect. A model can perform well on a benchmark while still learning shortcuts tied to brightness, clouds, geography, seasonality, sensor artifacts, or land-cover imbalance.
-        </p>
-        <p>
-          Sparse autoencoders are interesting here because they give a concrete way to break dense model activations into smaller candidate features. Instead of only asking whether the model output is correct, I can ask what kinds of patterns inside the satellite imagery are being represented.
-        </p>
+        <header class="article-hero">
+          <p class="eyebrow">Early project note</p>
+          <h1>Sparse Autoencoders for Geospatial Foundation Models: Early Experiments</h1>
+          <p class="subtitle">
+            Exploring whether sparse features can help us inspect Prithvi-EO-2.0 representations.
+          </p>
+          <p class="meta-line">6 Jun 2026 · Mechanistic interpretability · Earth observation</p>
+        </header>
 
-        <section id="why" class="article-section">
-          <h2>Why SAEs for geospatial models</h2>
+        <div class="note-box">
           <p>
-            Remote-sensing models see more than RGB images. They use multi-band signals such as NIR and SWIR, and the same visible scene can mean different things depending on season, cloud cover, geography, and sensor conditions. That makes ordinary visual inspection incomplete.
+            This is an early project note documenting preliminary experiments. The results should be read as candidate interpretations, not definitive semantic labels.
+          </p>
+        </div>
+
+        <section id="motivation" class="article-section">
+          <h2>Motivation</h2>
+          <p>
+            Geospatial foundation models are becoming useful building blocks for Earth observation tasks such as land-cover mapping, environmental monitoring, disaster response, and infrastructure analysis. These systems can absorb large volumes of multi-spectral satellite data, but that also makes their internal representations difficult to inspect.
           </p>
           <p>
-            SAEs give me a debugging handle. If an SAE feature consistently activates on a visual or spectral pattern, I can inspect the top examples, compare them to random patches, and test whether removing that feature changes the representation. That is closer to a usable model-debugging workflow than a single saliency map.
+            Interpretability matters in this setting because mistakes are rarely just abstract model errors. A model may latch onto cloud artifacts, seasonal patterns, sensor effects, geography-specific cues, or land-cover imbalance. For Earth observation, understanding what the model appears to represent can help us debug failure modes before they enter downstream workflows.
+          </p>
+          <p>
+            My interest is in the intersection of mechanistic interpretability and geospatial AI. Sparse autoencoders have been useful for studying internal features in language models. I wanted to see whether a similar approach could give a practical inspection tool for geospatial foundation models.
           </p>
         </section>
 
-        <section id="issues" class="article-section">
-          <h2>Issues I ran into</h2>
+        <section id="why-sae" class="article-section">
+          <h2>Why SAEs for geospatial foundation models?</h2>
           <p>
-            The first issue was that the feature examples were easy to over-interpret. A contact sheet can look coherent, but that does not mean the feature is causally important. I fixed this by adding a simple ablation check: remove the selected SAE feature and compare the representation change against random active features on the same tokens.
+            Sparse autoencoders try to represent dense model activations using a larger set of sparse features. If a feature activates on a coherent set of image patches, it becomes a candidate handle for interpretation.
           </p>
           <p>
-            The second issue was that RGB-only views are not enough for satellite data. Some features looked like ordinary bright patches, but the stronger clue was in SWIR brightness or texture. I fixed this by summarizing top patches with basic remote-sensing statistics instead of relying only on screenshots.
+            This is not exactly the same problem as LLM interpretability. Satellite models operate over spatial patches, multiple spectral bands, sensor-specific artifacts, and geographic context. RGB images are only part of the story: NIR, SWIR, NDVI, NDWI, brightness, and texture can all matter. That makes qualitative inspection useful, but incomplete.
           </p>
           <p>
-            The third issue was choosing a claim that was not too strong. I do not want to say an SAE feature is a human concept just because it has clean-looking examples. The safer claim is that some features are coherent candidates for interpretation and have measurable effects when ablated.
+            The goal here is modest: find candidate sparse features, inspect where they activate, compare them against simple remote-sensing statistics, and test whether ablating them changes the SAE-reconstructed representation more than a random active feature.
           </p>
         </section>
 
-        <section id="example" class="article-section">
-          <h2>One example</h2>
+        <section id="setup" class="article-section">
+          <h2>Experimental setup</h2>
+          <div class="summary-box">
+            <div>
+              <span class="summary-label">Model</span>
+              <span class="summary-value">Prithvi-EO-2.0-300M</span>
+            </div>
+            <div>
+              <span class="summary-label">Layer</span>
+              <span class="summary-value"><code>encoder.blocks.6</code></span>
+            </div>
+            <div>
+              <span class="summary-label">Data</span>
+              <span class="summary-value">500 HLS chips</span>
+            </div>
+            <div>
+              <span class="summary-label">SAE</span>
+              <span class="summary-value">Top-K SAE, <code>d_hidden=4096</code>, <code>k=64</code></span>
+            </div>
+            <div class="summary-wide">
+              <span class="summary-label">Main observation</span>
+              <span class="summary-value">Sparse features can localize visually meaningful patch-level patterns, but the interpretations are still preliminary.</span>
+            </div>
+          </div>
           <p>
-            This contact sheet shows one SAE feature from the experiment. The useful part is not just that the patches look related. It is that I can now ask follow-up questions: what bands explain the activation, does it appear across different chips, and does ablating it move the representation more than a random active feature?
+            I extracted intermediate representations from Prithvi, trained a Top-K SAE, and then inspected selected features using RGB overlays, contact sheets, simple spectral and texture summaries, and feature ablations.
           </p>
-          <figure class="article-figure">
-            <img src="images/sae-gfm/feature_4093_top25.png" width="2240" height="2368" alt="Contact sheet of top patches activating one SAE feature in a geospatial foundation model" />
+        </section>
+
+        <section id="observations" class="article-section">
+          <h2>First observations</h2>
+          <p>
+            The most useful signal came from combining visual inspection with quantitative checks. Some features appeared visually coherent in top-activating patches, but RGB alone was not enough to support an interpretation. For several features, SWIR brightness, edge density, or texture statistics were more informative than the visible image.
+          </p>
+          <p>
+            I also found that ablation was a useful sanity check. Ablating selected SAE features changed reconstructed Prithvi representations more than ablating random active features. This does not show downstream task behavior changed. It only measures changes in SAE-reconstructed representation space.
+          </p>
+          <figure class="article-figure compact-figure">
+            <img src="images/sae-gfm/fig_ablation_l2_ratio.png" width="1496" height="924" loading="lazy" alt="Bar chart comparing selected SAE feature ablations against random active feature ablations" />
             <figcaption>
-              One SAE feature example from Prithvi-EO-2.0-300M activations. I used this kind of contact sheet as a starting point, then checked spectral summaries and ablation behavior before trusting the interpretation.
+              Ablation summary for selected SAE features. The bars compare reconstruction-space changes against random active-feature ablations. This measures changes in SAE-reconstructed representation space, not downstream predictions.
             </figcaption>
           </figure>
         </section>
 
+        <section id="features" class="article-section">
+          <h2>Candidate features</h2>
+          <p>
+            The examples below are qualitative candidate interpretations. The green box marks the highest-activating patch in the displayed chip. I am not treating these as definitive semantic labels; they are starting points for validation.
+          </p>
+          <div class="feature-grid">
+            <figure class="article-figure feature-card">
+              <img src="images/sae-gfm/feature_4093_rgb_overlay.png" width="1800" height="1500" loading="lazy" alt="RGB overlay for SAE feature 4093 with a green box around the highest activating patch" />
+              <figcaption>
+                <strong>Feature 4093.</strong> Appears to activate on agricultural field mosaics and parcel-like structure. The green box marks the highest-activating patch. This is qualitative evidence for a candidate interpretation, not a definitive semantic label.
+              </figcaption>
+            </figure>
+            <figure class="article-figure feature-card">
+              <img src="images/sae-gfm/feature_3421_rgb_overlay.png" width="1800" height="1500" loading="lazy" alt="RGB overlay for SAE feature 3421 with a green box around the highest activating patch" />
+              <figcaption>
+                <strong>Feature 3421.</strong> Is consistent with high-edge, heterogeneous bright texture. The green box marks the highest-activating patch. This is qualitative evidence only and needs stronger validation.
+              </figcaption>
+            </figure>
+            <figure class="article-figure feature-card">
+              <img src="images/sae-gfm/feature_2460_rgb_overlay.png" width="1800" height="1500" loading="lazy" alt="RGB overlay for SAE feature 2460 with a green box around the highest activating patch" />
+              <figcaption>
+                <strong>Feature 2460.</strong> Appears to activate on bright, low-texture surfaces, possibly snow-, rock-, cloud-, or bare-surface-like regions. The green box marks the highest-activating patch. This is a candidate interpretation.
+              </figcaption>
+            </figure>
+            <figure class="article-figure feature-card">
+              <img src="images/sae-gfm/feature_905_rgb_overlay.png" width="1800" height="1500" loading="lazy" alt="RGB overlay for SAE feature 905 with a green box around the highest activating patch" />
+              <figcaption>
+                <strong>Feature 905.</strong> Suggests heterogeneous texture with lower brightness than some other selected features. The green box marks the highest-activating patch. This should be treated as qualitative evidence only.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="worked" class="article-section">
+          <h2>What worked and what did not</h2>
+          <p>
+            A ReLU+L1 SAE produced features that were too dense for the kind of inspection I wanted. Switching to a Top-K SAE gave cleaner sparse activations and made the top examples easier to reason about.
+          </p>
+          <p>
+            Some early features captured no-data or black-patch artifacts rather than meaningful scene structure. Filtering invalid patches was important before trusting the contact sheets or feature summaries.
+          </p>
+          <p>
+            The workflow that worked best was iterative: inspect top patches, check simple statistics such as NDVI, NDWI, brightness, and texture, then run a small ablation comparison against random active features. Each step reduced one source of over-interpretation.
+          </p>
+        </section>
+
+        <section id="limitations" class="article-section">
+          <h2>Limitations</h2>
+          <ul class="article-list">
+            <li>This is one model: Prithvi-EO-2.0-300M.</li>
+            <li>This is one layer: <code>encoder.blocks.6</code>.</li>
+            <li>The dataset is small: 500 HLS chips.</li>
+            <li>The feature interpretations are preliminary and should be treated as candidate labels.</li>
+            <li>I have not yet run downstream task ablations.</li>
+            <li>Stronger validation would require labels, geography-aware baselines, and review from domain experts.</li>
+          </ul>
+        </section>
+
         <section id="next" class="article-section">
-          <h2>What I would do next</h2>
-          <p>
-            The next step is to connect these SAE features to downstream geospatial tasks, not just reconstruction-space changes. If a feature matters for land-cover, disaster, or environmental monitoring behavior, then it becomes a much more useful debugging target.
-          </p>
-          <p>
-            I also want geography-aware baselines. A feature that looks meaningful may simply be picking up region, season, or sensor distribution. Better baselines would help separate real model structure from dataset artifacts.
-          </p>
+          <h2>Next steps</h2>
+          <ul class="article-list">
+            <li>Build more contact sheets and validate a larger set of sparse features.</li>
+            <li>Use NDVI, NDWI, brightness, SWIR brightness, texture, and edge-density statistics more systematically.</li>
+            <li>Run downstream task ablations instead of only reconstruction-space ablations.</li>
+            <li>Compare features across layers to see whether earlier and later representations differ.</li>
+            <li>Possibly compare against other geospatial foundation models such as Clay or TerraMind later.</li>
+          </ul>
         </section>
       </article>
     </main>
