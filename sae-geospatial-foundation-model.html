@@ -25,10 +25,10 @@
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="#motivation">Motivation</a></li>
+          <li><a href="#snapshot">Snapshot</a></li>
           <li><a href="#why-sae">Why SAEs</a></li>
-          <li><a href="#setup">Setup</a></li>
           <li><a href="#observations">Observations</a></li>
-          <li><a href="#features">Features</a></li>
+          <li><a href="#feature-example">Feature</a></li>
           <li><a href="#worked">What Worked</a></li>
           <li><a href="#limitations">Limitations</a></li>
           <li><a href="#next">Next</a></li>
@@ -49,7 +49,7 @@
 
         <div class="note-box">
           <p>
-            This is an early project note documenting preliminary experiments. The results should be read as candidate interpretations, not definitive semantic labels.
+            This is an early project note, not a peer-reviewed result. The interpretations below should be read as candidate explanations rather than definitive semantic labels.
           </p>
         </div>
 
@@ -66,21 +66,8 @@
           </p>
         </section>
 
-        <section id="why-sae" class="article-section">
-          <h2>Why SAEs for geospatial foundation models?</h2>
-          <p>
-            Sparse autoencoders try to represent dense model activations using a larger set of sparse features. If a feature activates on a coherent set of image patches, it becomes a candidate handle for interpretation.
-          </p>
-          <p>
-            This is not exactly the same problem as LLM interpretability. Satellite models operate over spatial patches, multiple spectral bands, sensor-specific artifacts, and geographic context. RGB images are only part of the story: NIR, SWIR, NDVI, NDWI, brightness, and texture can all matter. That makes qualitative inspection useful, but incomplete.
-          </p>
-          <p>
-            The goal here is modest: find candidate sparse features, inspect where they activate, compare them against simple remote-sensing statistics, and test whether ablating them changes the SAE-reconstructed representation more than a random active feature.
-          </p>
-        </section>
-
-        <section id="setup" class="article-section">
-          <h2>Experimental setup</h2>
+        <section id="snapshot" class="article-section">
+          <h2>Experiment snapshot</h2>
           <div class="summary-box">
             <div>
               <span class="summary-label">Model</span>
@@ -92,19 +79,32 @@
             </div>
             <div>
               <span class="summary-label">Data</span>
-              <span class="summary-value">500 HLS chips</span>
+              <span class="summary-value">500 HLS chips, each with shape <code>[4, 6, 256, 256]</code></span>
             </div>
             <div>
               <span class="summary-label">SAE</span>
               <span class="summary-value">Top-K SAE, <code>d_hidden=4096</code>, <code>k=64</code></span>
             </div>
             <div class="summary-wide">
-              <span class="summary-label">Main observation</span>
-              <span class="summary-value">Sparse features can localize visually meaningful patch-level patterns, but the interpretations are still preliminary.</span>
+              <span class="summary-label">Validation</span>
+              <span class="summary-value">RGB overlays, contact sheets, spectral/texture summaries, and feature ablation</span>
             </div>
           </div>
+        </section>
+
+        <section id="why-sae" class="article-section">
+          <h2>Why SAEs for geospatial foundation models?</h2>
           <p>
-            I extracted intermediate representations from Prithvi, trained a Top-K SAE, and then inspected selected features using RGB overlays, contact sheets, simple spectral and texture summaries, and feature ablations.
+            Sparse autoencoders try to represent dense model activations using a larger set of sparse features. If a feature activates on a coherent set of image patches, it becomes a candidate handle for interpretation.
+          </p>
+          <p>
+            This is not exactly the same problem as LLM interpretability. Satellite models operate over spatial patches, multiple spectral bands, sensor-specific artifacts, and geographic context. RGB images are only part of the story: NIR, SWIR, NDVI, NDWI, brightness, and texture can all matter. That makes qualitative inspection useful, but incomplete.
+          </p>
+          <p>
+            The goal here is modest: find candidate sparse features, inspect where they activate, compare them against simple remote-sensing statistics, and test whether ablating them changes the SAE-reconstructed representation more than a random active feature.
+          </p>
+          <p>
+            A standard ReLU+L1 SAE produced features that were too dense in early experiments. Switching to a Top-K SAE gave more controlled sparsity by forcing only a fixed number of latent features to be active for each patch token.
           </p>
         </section>
 
@@ -116,52 +116,32 @@
           <p>
             I also found that ablation was a useful sanity check. Ablating selected SAE features changed reconstructed Prithvi representations more than ablating random active features. This does not show downstream task behavior changed. It only measures changes in SAE-reconstructed representation space.
           </p>
+          <p>
+            The safer claim is that some SAE features are coherent candidates for interpretation, and some produce larger reconstruction-space changes than random active features when ablated.
+          </p>
           <figure class="article-figure compact-figure">
             <img src="images/sae-gfm/fig_ablation_l2_ratio.png" width="1496" height="924" loading="lazy" alt="Bar chart comparing selected SAE feature ablations against random active feature ablations" />
             <figcaption>
-              Ablation summary for selected SAE features. The bars compare reconstruction-space changes against random active-feature ablations. This measures changes in SAE-reconstructed representation space, not downstream predictions.
+              Feature ablation in SAE reconstruction space. This measures representation change after removing selected SAE features, not downstream task behavior.
             </figcaption>
           </figure>
         </section>
 
-        <section id="features" class="article-section">
-          <h2>Candidate features</h2>
+        <section id="feature-example" class="article-section">
+          <h2>Candidate feature example</h2>
           <p>
-            The examples below are qualitative candidate interpretations. The green box marks the highest-activating patch in the displayed chip. I am not treating these as definitive semantic labels; they are starting points for validation.
+            I kept the visual evidence intentionally small here. The contact sheet below shows top-activating patches for one candidate feature. The pattern appears visually coherent, but it should still be treated as preliminary evidence rather than a semantic label.
           </p>
-          <div class="feature-grid">
-            <figure class="article-figure feature-card">
-              <img src="images/sae-gfm/feature_4093_rgb_overlay.png" width="1800" height="1500" loading="lazy" alt="RGB overlay for SAE feature 4093 with a green box around the highest activating patch" />
-              <figcaption>
-                <strong>Feature 4093.</strong> Appears to activate on agricultural field mosaics and parcel-like structure. The green box marks the highest-activating patch. This is qualitative evidence for a candidate interpretation, not a definitive semantic label.
-              </figcaption>
-            </figure>
-            <figure class="article-figure feature-card">
-              <img src="images/sae-gfm/feature_3421_rgb_overlay.png" width="1800" height="1500" loading="lazy" alt="RGB overlay for SAE feature 3421 with a green box around the highest activating patch" />
-              <figcaption>
-                <strong>Feature 3421.</strong> Is consistent with high-edge, heterogeneous bright texture. The green box marks the highest-activating patch. This is qualitative evidence only and needs stronger validation.
-              </figcaption>
-            </figure>
-            <figure class="article-figure feature-card">
-              <img src="images/sae-gfm/feature_2460_rgb_overlay.png" width="1800" height="1500" loading="lazy" alt="RGB overlay for SAE feature 2460 with a green box around the highest activating patch" />
-              <figcaption>
-                <strong>Feature 2460.</strong> Appears to activate on bright, low-texture surfaces, possibly snow-, rock-, cloud-, or bare-surface-like regions. The green box marks the highest-activating patch. This is a candidate interpretation.
-              </figcaption>
-            </figure>
-            <figure class="article-figure feature-card">
-              <img src="images/sae-gfm/feature_905_rgb_overlay.png" width="1800" height="1500" loading="lazy" alt="RGB overlay for SAE feature 905 with a green box around the highest activating patch" />
-              <figcaption>
-                <strong>Feature 905.</strong> Suggests heterogeneous texture with lower brightness than some other selected features. The green box marks the highest-activating patch. This should be treated as qualitative evidence only.
-              </figcaption>
-            </figure>
-          </div>
+          <figure class="article-figure compact-figure contact-sheet-figure">
+            <img src="images/sae-gfm/feature_4093_top25.png" width="2240" height="2368" loading="lazy" alt="Contact sheet of top patches activating SAE feature 4093" />
+            <figcaption>
+              <strong>Feature 4093.</strong> This candidate feature appears to activate on agricultural field mosaics and parcel-like structures. The contact sheet shows top-activating patches. This is qualitative evidence only, not a definitive label.
+            </figcaption>
+          </figure>
         </section>
 
         <section id="worked" class="article-section">
           <h2>What worked and what did not</h2>
-          <p>
-            A ReLU+L1 SAE produced features that were too dense for the kind of inspection I wanted. Switching to a Top-K SAE gave cleaner sparse activations and made the top examples easier to reason about.
-          </p>
           <p>
             Some early features captured no-data or black-patch artifacts rather than meaningful scene structure. Filtering invalid patches was important before trusting the contact sheets or feature summaries.
           </p>

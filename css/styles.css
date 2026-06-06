@@ -425,15 +425,8 @@ p {
   max-width: 760px;
 }
 
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.feature-card {
-  margin: 0;
+.contact-sheet-figure {
+  max-width: 620px;
 }
 
 .article-list {
