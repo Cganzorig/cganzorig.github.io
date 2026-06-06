@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sparse Autoencoders for Geospatial Foundation Models: Early Experiments | Ganzorig Chuluunbat</title>
+  <title>Sparse Autoencoders for Geospatial Foundation Models: Early Experiments</title>
   <meta
     name="description"
     content="An early project note exploring whether sparse autoencoders can help inspect Prithvi-EO-2.0 geospatial foundation model representations."
@@ -29,7 +29,7 @@
           <li><a href="#why-sae">Why SAEs</a></li>
           <li><a href="#observations">Observations</a></li>
           <li><a href="#feature-example">Feature</a></li>
-          <li><a href="#worked">What Worked</a></li>
+          <li><a href="#issues">Issues</a></li>
           <li><a href="#limitations">Limitations</a></li>
           <li><a href="#next">Next</a></li>
         </ul>
@@ -42,7 +42,7 @@
           <p class="eyebrow">Early project note</p>
           <h1>Sparse Autoencoders for Geospatial Foundation Models: Early Experiments</h1>
           <p class="subtitle">
-            Exploring whether sparse features can help us inspect Prithvi-EO-2.0 representations.
+            Exploring whether sparse features can help inspect Prithvi-EO-2.0 representations.
           </p>
           <p class="meta-line">6 Jun 2026 · Mechanistic interpretability · Earth observation</p>
         </header>
@@ -60,9 +60,6 @@
           </p>
           <p>
             Interpretability matters in this setting because mistakes are rarely just abstract model errors. A model may latch onto cloud artifacts, seasonal patterns, sensor effects, geography-specific cues, or land-cover imbalance. For Earth observation, understanding what the model appears to represent can help us debug failure modes before they enter downstream workflows.
-          </p>
-          <p>
-            My interest is in the intersection of mechanistic interpretability and geospatial AI. Sparse autoencoders have been useful for studying internal features in language models. I wanted to see whether a similar approach could give a practical inspection tool for geospatial foundation models.
           </p>
         </section>
 
@@ -91,6 +88,10 @@
             </div>
           </div>
         </section>
+
+        <p class="intro-continuation">
+          My interest is in the intersection of mechanistic interpretability and geospatial AI. Sparse autoencoders have been useful for studying internal features in language models. I wanted to see whether a similar approach could give a practical inspection tool for geospatial foundation models.
+        </p>
 
         <section id="why-sae" class="article-section">
           <h2>Why SAEs for geospatial foundation models?</h2>
@@ -140,10 +141,13 @@
           </figure>
         </section>
 
-        <section id="worked" class="article-section">
-          <h2>What worked and what did not</h2>
+        <section id="issues" class="article-section">
+          <h2>Issues I ran into</h2>
           <p>
             Some early features captured no-data or black-patch artifacts rather than meaningful scene structure. Filtering invalid patches was important before trusting the contact sheets or feature summaries.
+          </p>
+          <p>
+            A standard ReLU+L1 SAE produced features that were too dense in early experiments, so I switched to a Top-K SAE to force a fixed number of active features per patch token.
           </p>
           <p>
             The workflow that worked best was iterative: inspect top patches, check simple statistics such as NDVI, NDWI, brightness, and texture, then run a small ablation comparison against random active features. Each step reduced one source of over-interpretation.
