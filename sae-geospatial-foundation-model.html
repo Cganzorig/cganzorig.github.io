@@ -104,6 +104,9 @@
           <p>
             The goal here is modest: find candidate sparse features, inspect where they activate, compare them against simple remote-sensing statistics, and test whether ablating them changes the SAE-reconstructed representation more than a random active feature.
           </p>
+          <p>
+            A standard ReLU+L1 SAE produced features that were too dense in early experiments. Switching to a Top-K SAE gave more controlled sparsity by forcing only a fixed number of latent features to be active for each patch token.
+          </p>
         </section>
 
         <section id="observations" class="article-section">
