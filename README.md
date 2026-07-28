@@ -5,6 +5,7 @@
 This static GitHub Pages site includes a GA4 tag in:
 
 - `index.html`
+- `scopebreak-agent-scope-expansion.html`
 - `sae-geospatial-foundation-model.html`
 
 To enable analytics:
@@ -14,4 +15,4 @@ To enable analytics:
 3. Copy the Measurement ID from the Web stream details. It will look like `G-GZ0JC86V8Q`.
 4. Replace `G-GZ0JC86V8Q` in the HTML files if you move the site to a different GA4 property later.
 
-GA4 can show users, page views, countries, cities, traffic sources, and visits to individual pages such as `sae-geospatial-foundation-model.html`.
+GA4 can show users, page views, countries, cities, traffic sources, and visits to individual pages such as `scopebreak-agent-scope-expansion.html` and `sae-geospatial-foundation-model.html`.
