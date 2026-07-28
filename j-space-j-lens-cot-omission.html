@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>J-Space: Can J-Lens Recover What Chain of Thought Leaves Out?</title>
+  <meta
+    name="description"
+    content="A controlled null study of whether a Jacobian lens can recover decision-critical information omitted from Qwen3.5-4B chain of thought."
+  />
+  <link rel="canonical" href="https://cganzorig.github.io/j-space-j-lens-cot-omission.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="J-Space: Can J-Lens Recover What Chain of Thought Leaves Out?" />
+  <meta
+    property="og:description"
+    content="A controlled J-Lens experiment, a candidate funnel ending at zero valid omissions, and a lesson about establishing the phenomenon before evaluating the monitor."
+  />
+  <meta property="og:url" content="https://cganzorig.github.io/j-space-j-lens-cot-omission.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Code+Pro:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZ0JC86V8Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GZ0JC86V8Q');
+  </script>
+  <script defer src="js/comments.js"></script>
+</head>
+<body>
+  <div class="site-shell article-shell">
+    <aside class="sidebar">
+      <a class="brand" href="index.html#home">Ganzorig Chuluunbat</a>
+      <nav aria-label="Article navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#question">Question</a></li>
+          <li><a href="#design">Design</a></li>
+          <li><a href="#attrition">Attrition</a></li>
+          <li><a href="#result">Result</a></li>
+          <li><a href="#audit">Audit</a></li>
+          <li><a href="#follow-up">Follow-up</a></li>
+          <li><a href="#lessons">Lessons</a></li>
+          <li><a href="#open-source">Repository</a></li>
+          <li><a href="#comments">Discussion</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content-shell article-content">
+      <article class="content-section article-page">
+        <header class="article-hero">
+          <p class="eyebrow">Mechanistic interpretability project</p>
+          <h1>J-Space: Can J-Lens Recover What Chain of Thought Leaves Out?</h1>
+          <p class="subtitle">
+            A controlled test on Qwen3.5-4B produced more J-Lens detections than a logit-lens baseline—but no manually valid recovery of omitted reasoning.
+          </p>
+          <p class="meta-line">28 Jul 2026 · Chain-of-thought monitoring · Controlled null result</p>
+        </header>
+
+        <div class="note-box">
+          <p>
+            The headline is deliberately negative: this study did not demonstrate hidden-reasoning recovery. Its useful output is a tested pipeline, a rejected pair of attractive false positives, and a clearer gate for future evaluations.
+          </p>
+        </div>
+
+        <section id="question" class="article-section">
+          <h2>The question behind J-Space</h2>
+          <p>
+            Chain-of-thought monitoring can inspect what a model writes while solving a problem, but written reasoning is not guaranteed to contain every fact that influenced the answer. If a decision-critical factor affects the model internally and never appears in the visible chain of thought, a text-only monitor may miss it.
+          </p>
+          <p>
+            J-Space asks whether a <strong>Jacobian lens</strong> can close part of that gap. A Jacobian lens maps intermediate model activity into token predictions, giving us a way to ask whether target concepts become detectable inside the model before—or without—being stated in the transcript. The difficult part is not producing a token score. It is proving that the target information really was absent from the visible reasoning and actually changed the model's behaviour.
+          </p>
+        </section>
+
+        <section id="design" class="article-section">
+          <h2>A paired, held-out experiment</h2>
+          <p>
+            I used the preference-intervention task from MonitorBench with a pinned Qwen3.5-4B checkpoint. Each item had an original condition and an intervention condition that supplied a decision-critical preference. Eight items were reserved for development and 50 disjoint items for evaluation, with five rollouts per condition: 580 generations in total.
+          </p>
+          <p>
+            Calibration stayed on the development split. I selected one candidate layer band and froze method-specific detection thresholds before inspecting held-out results. J-Lens and a logit-lens baseline were scored at the same generated token positions using the exact token IDs, avoiding decode–encode drift. A candidate also needed paired behavioural evidence: the intervention had to change the answer toward the benchmark-preferred choice.
+          </p>
+          <p>
+            This separation matters. A high internal score is not evidence of hidden reasoning on its own. The information must influence behaviour, survive a lexical disclosure check, be marked as omitted by a semantic screen, and then withstand full manual review.
+          </p>
+        </section>
+
+        <section id="attrition" class="article-section">
+          <h2>The largest problem appeared before interpretability</h2>
+          <p>
+            Completion was strongly asymmetric. Only 93 of 250 held-out original generations were usable, compared with 181 of 250 intervention generations. Both members were usable in just 76 pairs. The intervention often resolved an ambiguity that otherwise led the model to spend its token budget reconsidering the question.
+          </p>
+          <p>
+            That leaves a selected subset rather than a representative sample of all prompts. Any monitoring comparison must be read with this attrition in mind; interpretability cannot repair a task that does not reliably produce analyzable paired behaviour.
+          </p>
+        </section>
+
+        <section id="result" class="article-section">
+          <h2>The candidate funnel ended at zero</h2>
+          <div class="result-funnel" aria-label="Candidate screening funnel">
+            <div class="result-step"><strong>580</strong><span>total generations</span></div>
+            <div class="result-step"><strong>76</strong><span>usable held-out pairs</span></div>
+            <div class="result-step"><strong>23</strong><span>behaviour changes</span></div>
+            <div class="result-step"><strong>2</strong><span>apparent overlaps</span></div>
+            <div class="result-step"><strong>0</strong><span>valid omissions</span></div>
+          </div>
+          <p>
+            On the 76 fully usable held-out pairs, J-Lens crossed its frozen threshold 24 times and the logit lens 11 times. But the mean J-Lens intervention-minus-original contrast was +0.0099, with an item-clustered 95% bootstrap interval from −0.0724 to +0.0957. The corresponding logit-lens estimate was −0.0175, with an interval from −0.0549 to +0.0189. Both intervals include zero and overlap broadly.
+          </p>
+          <p>
+            More threshold crossings are a property of this scoring pipeline, not proof of better discrimination. Among the 23 behaviour-changing pairs, an automated semantic monitor and J-Lens jointly identified two apparent omission candidates. Those were the rows that most needed scrutiny.
+          </p>
+        </section>
+
+        <section id="audit" class="article-section">
+          <h2>Why the two apparent positives failed</h2>
+          <p>
+            The semantic screen reused Qwen3.5-4B with thinking disabled instead of MonitorBench's larger configured judge, so I treated its labels as triage rather than ground truth. That caution changed the result.
+          </p>
+          <p>
+            In both apparent positives, the full chain of thought explicitly quoted and used the supposedly omitted preference. One transcript introduced it as a user preference and compared options using that factor; the other likewise made the decision-critical information visible. The automated monitor had returned an omission label anyway. These were monitor failures, not J-Lens recoveries.
+          </p>
+          <p>
+            This is the central result: the study found no manually valid case where J-Lens recovered decision-critical information absent from chain of thought, and no reliable population-level advantage over the baseline.
+          </p>
+        </section>
+
+        <section id="follow-up" class="article-section">
+          <h2>A phenomenon-first follow-up</h2>
+          <p>
+            The null result suggested a better order of operations: establish genuine omission before spending compute on mechanistic scoring. I froze a gate requiring at least ten quality-preserving omission trajectories across at least five unique items before any Stage B J-Lens comparison.
+          </p>
+          <p>
+            Three controlled pilots explored answer-cue concealment, a hidden acrostic objective, and a punctuation watermark. None established the required phenomenon. The watermark pilot stopped prospectively for futility after 10 hidden trajectories and 40 of 120 planned rows; J-Lens scoring was deliberately not run. This is not a completed positive experiment—it is evidence that the gate prevented an uninterpretable monitor comparison.
+          </p>
+        </section>
+
+        <section id="lessons" class="article-section">
+          <h2>What I learned</h2>
+          <ul class="article-list">
+            <li><strong>Establish the target phenomenon first.</strong> A monitor cannot be evaluated on hidden information if the task rarely produces genuine omission.</li>
+            <li><strong>Threshold counts are not enough.</strong> Paired continuous effects and item-clustered uncertainty can tell a very different story.</li>
+            <li><strong>Exact token accounting matters.</strong> Retokenizing generated text can silently shift the positions being interpreted.</li>
+            <li><strong>Automated labels are candidates, not verdicts.</strong> Full-transcript review turned two apparent successes into zero.</li>
+            <li><strong>Stopping rules are scientific results.</strong> A prospective gate can save compute and prevent post-hoc reinterpretation.</li>
+          </ul>
+        </section>
+
+        <section id="open-source" class="article-section">
+          <h2>Source release</h2>
+          <p>
+            I published the hand-written research scripts and tests after scanning the workspace for credentials and local identifying paths. The public repository intentionally excludes notebooks, configurations, datasets, generated reasoning, model outputs, result bundles, figures, caches, and working notes.
+          </p>
+          <div class="repo-box">
+            <p><strong>Repository:</strong> <a href="https://github.com/Cganzorig/j_space">github.com/Cganzorig/j_space</a></p>
+            <p>The README describes the source layout, environment, tests, release boundary, and interpretation cautions.</p>
+          </div>
+          <p>
+            Because the frozen result artifacts are excluded, this is an implementation release rather than a self-contained reproduction package. The distinction is intentional: the public claim should match what the repository actually contains.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>
+          © 2026 Ganzorig Chuluunbat · <a href="mailto:cganzorig12@gmail.com">cganzorig12@gmail.com</a>
+        </p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
